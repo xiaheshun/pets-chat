@@ -1,0 +1,35 @@
+<resources>
+
+    <style name="AppTheme.Launch">
+        <item name="xui_config_color_splash_bg">@color/xui_config_color_white</item>
+        <item name="xui_config_app_logo_bottom">@dimen/xui_config_app_logo_bottom</item>
+        <item name="xui_config_company_logo_bottom">@dimen/xui_config_company_logo_bottom</item>
+        <item name="android:windowBackground">@drawable/xui_config_bg_splash</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--欢迎页背景，这个背景能在第一时间显示, 避免启动时白屏，黑屏问题-->
+    <style name="AppTheme.Launch.App">
+        <!--注意修改图标-->
+        <item name="xui_config_color_splash_bg">@drawable/loading_bg</item>
+    </style>
+
+    <!--加载新页面背景，这个背景能在第一时间显示, 避免启动时白屏，黑屏问题-->
+    <style name="AppTheme.Launch.CreatePage">
+        <!--注意修改图标-->
+        <item name="xui_config_color_splash_bg">@drawable/loading_bg</item>
+    </style>
+
+    <!-- 登录组件 -->
+    <style name="SuperButton.Primary.Login">
+        <item name="android:layout_width">290dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_marginStart">35dp</item>
+        <item name="android:layout_marginEnd">35dp</item>
+        <item name="sCornersRadius">4dp</item>
+        <item name="sSelectorNormalColor">#3A68AF</item>
+        <item name="sSelectorPressedColor">?attr/colorAccent</item>
+        <item name="android:textColor">@color/xui_config_color_white</item>
+    </style>
+
+</resources>

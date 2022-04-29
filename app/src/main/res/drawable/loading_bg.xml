@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 防止打开主页面白屏时间过长，增加过场动画 -->
+<!-- https://developer.android.google.cn/guide/topics/resources/animation-resource?hl=zh-cn#Frame -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <item android:drawable="@color/White" />
+
+    <item
+        android:width="60dp"
+        android:height="60dp"
+        android:bottom="200dp"
+        android:drawable="@drawable/loading"
+        android:gravity="center"></item>
+
+</layer-list>

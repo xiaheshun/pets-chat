@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+}
+
+def androidConfig = rootProject.ext.androidConfig
+def depConfig = rootProject.ext.depConfig
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.compileSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(path: ':library:pets-chat-db')
+    // 依赖通用库
+    // 单元测试
+    testImplementation depConfig.junit
+    androidTestImplementation depConfig.anroidxJunit
+    androidTestImplementation depConfig.androidxEspressoCore
+}

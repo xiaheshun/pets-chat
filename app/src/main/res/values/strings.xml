@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pets-Chat</string>
+    <string name="tab_log">Tab 1</string>
+    <string name="tab_work">Tab 2</string>
+    <string name="tab_personal">Tab 3</string>
+    <string name="company">https://github.com/xiaheshun</string>
+</resources>

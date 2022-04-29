@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+    <root-path
+        name="external_files"
+        path="." />
+
+    <external-path path="Android/data/cn.proxx.chat.pets.app.fxp/" name="files_root"/>
+</resource>
+

@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+def androidConfig = rootProject.ext.androidConfig
+def depConfig = rootProject.ext.depConfig
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+//    lintOptions {
+//        abortOnError false
+//    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 添加hy-common-api依赖
+    api 'org.xutils:xutils:3.8.12'
+    // 切面
+    api 'org.aspectj:aspectjrt:1.9.5'
+    //依赖第三方库
+    api depConfig.appcompat
+    api depConfig.constraintlayout
+    api depConfig.material
+    api depConfig.recyclerview
+    api depConfig.glide
+    api depConfig.multidex
+    // X库的相关依赖
+    api depConfig.xui
+    api depConfig.xpage
+    api depConfig.xutil
+    api depConfig.xutilSub
+    // 网络请求和更新
+    api depConfig.xupdate
+    api depConfig.xhttp2
+    api depConfig.gson
+    api depConfig.okhttp
+    api depConfig.rxjava
+    api depConfig.rxandroid
+    // 屏幕适配
+    api depConfig.autosize
+    // 权限申请
+    api depConfig.xxpermissions
+    // 键值对
+    api depConfig.mmkv
+    // 组件间总线通信框架
+    api depConfig.eventbus
+    // viewBinding
+    implementation 'androidx.databinding:viewbinding:4.1.0'
+}

@@ -1,0 +1,8 @@
+rootProject.name = "pets-chat"
+include ':app'
+include ':pets-chat-message'
+include ':pets-chat-personal'
+
+include ':library:app-common'
+include ':library:pets-chat-db'
+include ':library:pets-chat-entity'

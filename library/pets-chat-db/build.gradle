@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.library'
+}
+
+def androidConfig = rootProject.ext.androidConfig
+def depConfig = rootProject.ext.depConfig
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.compileSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    // 添加本地依赖包
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 单元测试
+    testImplementation depConfig.junit
+    androidTestImplementation depConfig.anroidxJunit
+    androidTestImplementation depConfig.androidxEspressoCore
+    // ORMLite数据库框架
+    api depConfig.ormliteAndroid
+    api depConfig.ormliteCore
+    // 依赖通用库
+    implementation project(path: ':library:app-common')
+}

@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+
+def androidConfig = rootProject.ext.androidConfig
+def appId = rootProject.ext.appId
+def depConfig = rootProject.ext.depConfig
+def hostUrl = rootProject.ext.hostUrl
+def releaseConfig = rootProject.ext.releaseConfig
+def debugConfig = rootProject.ext.debugConfig
+
+android {
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
+
+    defaultConfig {
+        applicationId appId.app
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(debugConfig.storeFile)
+            storePassword debugConfig.storePassword
+            keyAlias debugConfig.keyAlias
+            keyPassword debugConfig.keyPassword
+        }
+        release {
+            //签名证书文件
+            storeFile file(releaseConfig.storeFile)
+            //签名证书文件的密码
+            storePassword releaseConfig.storePassword
+            //密钥别名
+            keyAlias releaseConfig.keyAlias
+            //密钥密码
+            keyPassword releaseConfig.keyPassword
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            buildConfigField("String", "HOST_URL", "${hostUrl.debug}")
+        }
+        release {
+            // 混淆
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            buildConfigField("String", "HOST_URL", "${hostUrl.release}")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    // 修改apk的文件名
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def date = new Date().format("yyyy-MM-dd_HH-mm", TimeZone.getTimeZone("GMT+08"))
+            if (variant.buildType.name == "debug") {
+                output.outputFileName = "pets_chat_debug_${android.defaultConfig.versionCode}_${date}.apk"
+            } else if (variant.buildType.name == "release") {
+                output.outputFileName = "pets_chat_release_${android.defaultConfig.versionCode}_${date}.apk"
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':library:app-common')
+    implementation project(path: ':library:pets-chat-db')
+    implementation project(path: ':library:pets-chat-entity')
+
+    // XPage自动编织
+    implementation depConfig.xpage
+    annotationProcessor depConfig.xpageCompiler
+
+    //如果是集成化模式，在发布版本时，各个模块都不能独立运行了
+    if (isRelease) {
+        implementation project(path: ':pets-chat-message')
+        implementation project(path: ':pets-chat-personal')
+    }
+}

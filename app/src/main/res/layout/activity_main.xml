@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--  ViewPager，页面填充页 android:layout_marginTop="?actionBarSize" -->
+    <cn.proxx.chat.pets.app.widget.CustomViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        android:overScrollMode="never" />
+
+    <!--  底部导航栏[ visible | gone | invisible ]  -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:labelVisibilityMode="labeled"/>
+
+</FrameLayout>
