@@ -1,8 +1,10 @@
-package cn.proxx.chat.pets.message;
+package cn.proxx.chat.pets.message.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
@@ -10,17 +12,16 @@ import com.xuexiang.xui.widget.actionbar.TitleBar;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import androidx.annotation.NonNull;
 import cn.proxx.android.common.base.BaseFragment;
 import cn.proxx.chat.pets.entity.event.EventMsg;
-import cn.proxx.chat.pets.message.databinding.FragmentGjhBinding;
+import cn.proxx.chat.pets.message.databinding.FragmentFriendBinding;
 
 /**
  * @author xiaheshun
  * @since 2022年4月29日 16:35
  */
-@Page(name = "消息页面")
-public class MessageFragment extends BaseFragment<FragmentGjhBinding> {
+@Page(name = "通讯录")
+public class FriendFragment extends BaseFragment<FragmentFriendBinding> {
 
     @Override
     protected TitleBar initTitle() {
@@ -34,8 +35,8 @@ public class MessageFragment extends BaseFragment<FragmentGjhBinding> {
 
     @NonNull
     @Override
-    protected FragmentGjhBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentGjhBinding.inflate(inflater, container, false);
+    protected FragmentFriendBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentFriendBinding.inflate(inflater, container, false);
     }
 
     @Override

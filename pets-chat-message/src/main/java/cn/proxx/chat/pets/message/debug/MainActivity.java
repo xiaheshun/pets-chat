@@ -16,7 +16,7 @@ import java.util.List;
 
 import cn.proxx.android.common.base.BaseActivity;
 import cn.proxx.android.common.util.XToastUtils;
-import cn.proxx.chat.pets.message.MessageFragment;
+import cn.proxx.chat.pets.message.fragment.MessageFragment;
 
 /**
  * @author xiaheshun

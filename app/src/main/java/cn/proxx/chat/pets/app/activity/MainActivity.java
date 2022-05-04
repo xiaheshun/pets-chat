@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
@@ -24,8 +27,6 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 import cn.proxx.android.common.base.BaseActivity;
 import cn.proxx.android.common.base.BaseFragment;
 import cn.proxx.android.common.entity.event.EventLogout;
@@ -33,7 +34,8 @@ import cn.proxx.android.common.util.data.CacheUtils;
 import cn.proxx.android.common.util.mmkv.MMKVUtils;
 import cn.proxx.chat.pets.app.R;
 import cn.proxx.chat.pets.app.databinding.ActivityMainBinding;
-import cn.proxx.chat.pets.message.MessageFragment;
+import cn.proxx.chat.pets.message.fragment.FriendFragment;
+import cn.proxx.chat.pets.message.fragment.MessageFragment;
 import cn.proxx.chat.pets.personal.PersonalFragment;
 
 /**
@@ -105,6 +107,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements V
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         fragments = new BaseFragment[]{
                 new MessageFragment(),
+                new FriendFragment(),
                 new PersonalFragment()
         };
 
