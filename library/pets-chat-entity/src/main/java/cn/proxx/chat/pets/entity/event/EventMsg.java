@@ -15,6 +15,11 @@ public class EventMsg<T> implements Serializable {
      */
     public static final int RECEIVE = 0;
 
+    /**
+     * 新好友
+     */
+    public static final int FRIEND_NEW = 1;
+
     private int code;
     private String msg;
     private T data;

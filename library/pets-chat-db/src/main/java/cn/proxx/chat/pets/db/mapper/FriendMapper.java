@@ -77,4 +77,20 @@ public class FriendMapper extends BaseMapper<FriendDO, String> {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 检查是否存在
+     *
+     * @param friend {@link FriendDO}
+     * @return {@link FriendDO}
+     */
+    public FriendDO checkIsExists(FriendDO friend) {
+        try {
+            FriendDO friendDO = dao.queryBuilder().where().eq("name", friend.getName()).and().eq("web_hook", friend.getWebHook()).queryForFirst();
+            return friendDO;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

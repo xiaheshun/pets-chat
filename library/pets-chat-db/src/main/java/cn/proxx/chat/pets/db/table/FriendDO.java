@@ -37,6 +37,12 @@ public class FriendDO implements Serializable {
     private String webHook;
 
     /**
+     * 加签
+     */
+    @DatabaseField(columnName = "secret")
+    private String secret;
+
+    /**
      * 更新时间
      */
     @DatabaseField(columnName = "update_time")
@@ -89,6 +95,14 @@ public class FriendDO implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     public Date getCreateTime() {

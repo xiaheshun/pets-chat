@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add"
+        android:layout_marginTop="?attr/xui_actionbar_height"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tx_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="钉钉" />
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/Gray"
+            android:gravity="left|top"
+            android:text="内容" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Orange"
+        android:text="投递" />
+
+</RelativeLayout>
