@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="gjh_header_arr">
-        <item>计划</item>
-        <item>正在执行</item>
-        <item>完成</item>
-    </string-array>
+
 </resources>

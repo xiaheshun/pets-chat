@@ -17,6 +17,7 @@ import java.util.List;
 import cn.proxx.android.common.constant.TagConstant;
 import cn.proxx.chat.pets.db.mapper.BaseVersionMapper;
 import cn.proxx.chat.pets.db.table.BaseVersionDO;
+import cn.proxx.chat.pets.db.table.FriendDO;
 import cn.proxx.chat.pets.db.table.UserDO;
 
 /**
@@ -30,13 +31,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * 字典版本 DATABASE_VERSION
      * 说明：任何通过APP直接打包的字典，都需要对 DATABASE_VERSION 进行+1
      */
-    public static final String DATABASE_NAME = "gjh";
+    public static final String DATABASE_NAME = "pets_chat";
     public static final Integer DATABASE_VERSION = 1;
     public static final String V_USER = "1.0";
+    public static final String V_FRIEND = "1.0";
 
     // 表名
     public static final String BASE_VERSION = "db_version";
-    public static final String T_USER = "gjh_user";
+    public static final String T_USER = "user";
+    public static final String T_FRIEND = "friend";
 
     // 本类的单例实例
     private static DatabaseHelper instance;
@@ -97,6 +100,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, BaseVersionDO.class);
             TableUtils.createTable(connectionSource, UserDO.class);
+            TableUtils.createTable(connectionSource, FriendDO.class);
             initDataBase();
         } catch (SQLException e) {
             Log.e(TagConstant.TAG_DB, "创建数据库时调用的方法", e);
@@ -108,6 +112,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.dropTable(connectionSource, BaseVersionDO.class, true);
             TableUtils.dropTable(connectionSource, UserDO.class, true);
+            TableUtils.dropTable(connectionSource, FriendDO.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             Log.e(TagConstant.TAG_DB, "数据库版本更新时调用的方法", e);
@@ -129,6 +134,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         List<BaseVersionDO> baseVersionDOList = new ArrayList<>();
         baseVersionDOList.add(new BaseVersionDO(BASE_VERSION, Integer.toString(DATABASE_VERSION)));
         baseVersionDOList.add(new BaseVersionDO(T_USER, V_USER));
+        baseVersionDOList.add(new BaseVersionDO(T_FRIEND, V_FRIEND));
         // 写入数据
         BaseVersionMapper.getInstance().create(baseVersionDOList);
     }
